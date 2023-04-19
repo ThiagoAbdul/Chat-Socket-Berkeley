@@ -1,19 +1,20 @@
 package chat.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Mensagem {
+public class Mensagem implements Serializable {
 	
 
 	private Long id;
 	private String conteudo;
 	private LocalTime horarioEnvio;
 	private LocalDate dataEnvio;
-	private LocalTime horarioEntrega;
-	private LocalDate dataEntrega;
 	private Usuario remente;
 	private Usuario destinatario;
+
+	private static final long serivalVersionUID = 1L;
 	
 	public Long getId() {
 		return id;
@@ -34,12 +35,6 @@ public class Mensagem {
 		return destinatario;
 	}
 	
-	public LocalTime getHorarioEntrega() {
-		return horarioEntrega;
-	}
-	public LocalDate getDataEntrega() {
-		return dataEntrega;
-	}
-	
+
 
 }

@@ -1,4 +1,4 @@
-package chat.util.seguranca;
+package chat.util.seguranca.hash;
 
 public interface Hash {
 	
