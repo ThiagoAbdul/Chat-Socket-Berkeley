@@ -1,9 +1,16 @@
 package chat.model;
 
 import java.awt.Image;
+<<<<<<< HEAD
 import java.util.Collection;
 
 public class Usuario {
+=======
+import java.io.Serializable;
+import java.util.Collection;
+
+public class Usuario implements Serializable {
+>>>>>>> abdul
 	
 	private long id;
 	private String email;
@@ -12,6 +19,11 @@ public class Usuario {
 	private Image foto;
 	private Collection<Usuario> contatos;
 	private Collection<GrupoDeUsuarios> grupos;
+<<<<<<< HEAD
+=======
+
+	private static final long serivalVersionUID = 1L;
+>>>>>>> abdul
 	
 	public long getId() {
 		return id;
