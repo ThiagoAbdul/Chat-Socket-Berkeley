@@ -7,9 +7,10 @@ public enum CodigoProtocoloDeTransferenciaDeObjeto implements Serializable {
     OK(1),
     REGISTRO(2),
     ENVIO_DE_MENSAGEM(3),
-    VERIFICAR_CAIXA_DE_ENTRADA(4);
+    VERIFICAR_CAIXA_DE_ENTRADA(4),
+    ENVIO_DE_OUTROS_USUARIOS(5);
 
-    private int codigo;
+    private final int codigo;
     CodigoProtocoloDeTransferenciaDeObjeto(int codigo) {
         this.codigo = codigo;
     }

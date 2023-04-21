@@ -7,10 +7,13 @@ public class Usuario implements Serializable {
 	private long id;
 	private String nome;
 
-
 	private static final long serivalVersionUID = 1L;
 
 	public Usuario(){ }
+
+	public Usuario(String nome) {
+		this.nome = nome;
+	}
 
 	public Usuario(long id, String nome) {
 		this.id = id;
@@ -19,6 +22,10 @@ public class Usuario implements Serializable {
 
 	public long getId() {
 		return id;
+	}
+
+	public void setId(long id){
+		this.id = id;
 	}
 
 	public String getNome() {
