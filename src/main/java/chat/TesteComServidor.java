@@ -1,31 +1,39 @@
 package chat;
 
 import chat.model.Usuario;
-import chat.shared.ProtocoloDeTransferenciaDeObjeto;
+import chat.requisicao.Requisicoes;
+import chat.shared.CodigoProtocoloDeTransferenciaDeObjeto;
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
+import java.util.Scanner;
+
 
 public class TesteComServidor {
 
     public static void main(String[] args) {
-        int SERVER_PORT = 8081;
-        String SERVER_IP = "127.0.0.1";
-        Usuario usuario = new Usuario("Hello world");
-        var pto = new ProtocoloDeTransferenciaDeObjeto(2, usuario);
-        try(Socket socket = new Socket(SERVER_IP, SERVER_PORT)){
-
-            var objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-            objectOutputStream.writeObject(pto);
-            objectOutputStream.flush();
-            var objectInputStream = new ObjectInputStream(socket.getInputStream());
-            var pto2 = (ProtocoloDeTransferenciaDeObjeto<Long>)objectInputStream.readObject();
-            System.out.println(pto2.getObjeto());
+        System.out.println("Nome do usuario: ");
+        String nome = new Scanner(System.in).nextLine();
+        Usuario usuario = new Usuario(nome);
+        var requisicaoDeRegistro = Requisicoes.REGISTRO;
+        try{
+            var ptoResponse = requisicaoDeRegistro.fazerRequisicao(usuario);
+            if (ptoResponse.CODIGO == CodigoProtocoloDeTransferenciaDeObjeto.OK.getCodigo()){
+                System.out.println("OK");
+                var requisicaoDeDescobertaDeUsuarios = Requisicoes.DESCOBRIR_OUTROS_USUARIOS;
+                long idUsuario = ptoResponse.getObjeto();
+                try{
+                    var ptoResponse2 = requisicaoDeDescobertaDeUsuarios.fazerRequisicao(idUsuario);
+                    (ptoResponse2.getObjeto())
+                            .forEach(System.out::println);
+                }
+                catch (Exception e){
+                    requisicaoDeDescobertaDeUsuarios.fecharConexao();
+                    e.printStackTrace();
+                }
+            }
         }
         catch (Exception e){
+            requisicaoDeRegistro.fecharConexao();
             e.printStackTrace();
         }
     }
-
 }

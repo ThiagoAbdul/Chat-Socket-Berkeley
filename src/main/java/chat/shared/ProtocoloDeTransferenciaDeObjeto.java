@@ -1,13 +1,11 @@
 package chat.shared;
 
 import java.io.Serializable;
+import java.util.HashSet;
 
 public class ProtocoloDeTransferenciaDeObjeto<T> implements Serializable {
     public final int CODIGO;
-    /*  1 - Registro
-        2 - Envio de mensagem
-        3 - Verificar caixa de mensagens
-    */
+
     private T objeto;
 
     private static final long serivalVersionUID = 1L;

@@ -9,7 +9,9 @@ public class Usuario implements Serializable {
 
 	private static final long serivalVersionUID = 1L;
 
-	public Usuario(){ }
+	public Usuario(long id){
+		this.id = id;
+	}
 
 	public Usuario(String nome) {
 		this.nome = nome;
@@ -42,5 +44,10 @@ public class Usuario implements Serializable {
 	@Override
 	public int hashCode() {
 		return Objects.hash(getId());
+	}
+
+	@Override
+	public String toString() {
+		return "[" + id + " - " + nome + "]";
 	}
 }
