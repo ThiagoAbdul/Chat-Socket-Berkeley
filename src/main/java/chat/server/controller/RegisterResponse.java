@@ -2,8 +2,8 @@ package chat.server.controller;
 
 import chat.channel.ChannelWriter;
 import chat.model.Connection;
-import chat.model.User;
-import chat.shared.MyObjectTransferProtocolFactory;
+import chat.shared.dto.UserDTO;
+import chat.shared.protocol.MyObjectTransferProtocolFactory;
 
 import java.io.IOException;
 import java.nio.channels.SocketChannel;
@@ -14,17 +14,17 @@ public class RegisterResponse implements Response{
 
     private final ChatServer server;
     private final SocketChannel clientChannel;
-    private final User user;
+    private final UserDTO userDTO;
 
-    public RegisterResponse(ChatServer server, SocketChannel clientChannel, User user) {
+    public RegisterResponse(ChatServer server, SocketChannel clientChannel, UserDTO userDTO) {
         this.server = server;
         this.clientChannel = clientChannel;
-        this.user = user;
+        this.userDTO = userDTO;
     }
 
     @Override
     public void doResponse() {
-        Connection newConnection = new Connection(clientChannel, user);
+        Connection newConnection = new Connection(clientChannel, userDTO);
         Collection<Connection> otherConnections = new HashSet<>(this.server.getConnections());
         if(this.server.getConnections().add(newConnection)){
             sendNewContactToAll(otherConnections);
@@ -38,7 +38,7 @@ public class RegisterResponse implements Response{
                 .map(connection -> new ChannelWriter(connection.getChannel()))
                 .forEach(writer -> {
                     try {
-                        writer.write(MyObjectTransferProtocolFactory.RECEIVE_NEW_CONTACT(this.user));
+                        writer.write(MyObjectTransferProtocolFactory.RECEIVE_NEW_CONTACT(this.userDTO));
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

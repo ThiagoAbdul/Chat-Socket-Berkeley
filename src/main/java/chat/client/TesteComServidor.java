@@ -4,8 +4,10 @@ import chat.channel.ChannelClient;
 import chat.client.thread.ThreadClient;
 import chat.model.Message;
 import chat.model.User;
-import chat.shared.MyObjectTransferProtocol;
-import chat.shared.MyObjectTransferProtocolFactory;
+import chat.service.MessageService;
+import chat.shared.dto.MessageDTO;
+import chat.shared.protocol.MyObjectTransferProtocol;
+import chat.shared.protocol.MyObjectTransferProtocolFactory;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -37,10 +39,13 @@ public class TesteComServidor {
                 }
             }*/
         Scanner scan = new Scanner(System.in);
+        MessageService messageService = new MessageService();
         while(true){
             String content = scan.nextLine();
-            MyObjectTransferProtocol<Message> motp = MyObjectTransferProtocolFactory
-                    .SEND_PRIVATE_MESSAGE(new Message(user, content));
+            var messageDTO = messageService.messageToDTO(new Message(user, content));
+            messageService.cryptoMessageDTO(messageDTO);
+            MyObjectTransferProtocol<MessageDTO> motp = MyObjectTransferProtocolFactory
+                    .SEND_PRIVATE_MESSAGE(messageDTO);
             client.getChannelWriter().write(motp);
         }
 

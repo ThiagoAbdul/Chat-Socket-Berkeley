@@ -3,7 +3,7 @@ package chat.client;
 import chat.channel.ChannelClient;
 import chat.channel.ChannelReader;
 import chat.handler.KeyHandler;
-import chat.shared.MyObjectTransferProtocol;
+import chat.shared.protocol.MyObjectTransferProtocol;
 
 import java.io.IOException;
 import java.nio.channels.SelectionKey;

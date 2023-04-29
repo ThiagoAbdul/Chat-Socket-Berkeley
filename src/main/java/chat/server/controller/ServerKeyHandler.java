@@ -4,7 +4,7 @@ import chat.channel.ChannelReader;
 import chat.exception.UnknowCodeException;
 import chat.handler.KeyHandler;
 import chat.model.Connection;
-import chat.shared.MyObjectTransferProtocol;
+import chat.shared.protocol.MyObjectTransferProtocol;
 import chat.util.io.BufferHandler;
 import lombok.extern.log4j.Log4j2;
 

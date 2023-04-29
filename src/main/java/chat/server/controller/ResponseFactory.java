@@ -1,9 +1,9 @@
 package chat.server.controller;
 
 import chat.exception.UnknowCodeException;
-import chat.model.Message;
-import chat.model.User;
-import chat.shared.MyObjectTransferProtocol;
+import chat.shared.dto.MessageDTO;
+import chat.shared.dto.UserDTO;
+import chat.shared.protocol.MyObjectTransferProtocol;
 
 import java.nio.channels.SocketChannel;
 
@@ -20,12 +20,12 @@ public class ResponseFactory {
                 return null; // TODO
             }
             case 2 -> {
-                User user = (User) motp.getObject();
-                return new RegisterResponse(server, clientChannel, user);
+                UserDTO userDTO = (UserDTO) motp.getObject();
+                return new RegisterResponse(server, clientChannel, userDTO);
             }
             case 3 -> {
-                Message message = (Message) motp.getObject();
-                return new SendPrivateMessageResponse(server, message);
+                MessageDTO messageDTO = (MessageDTO) motp.getObject();
+                return new SendPrivateMessageResponse(server, messageDTO);
             }
             case 4 -> {
                 return null; // TODO

@@ -1,5 +1,8 @@
 package chat.model;
+
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 
 public class User implements Serializable {
@@ -7,6 +10,7 @@ public class User implements Serializable {
 	private long id;
 	private String name;
 
+	private final Collection<User> contacts = new HashSet<>();
 	private static final long serivalVersionUID = 1L;
 
 	public User(long id){

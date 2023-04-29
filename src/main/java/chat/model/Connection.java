@@ -1,25 +1,25 @@
 package chat.model;
 
+import chat.shared.dto.UserDTO;
+
 import java.nio.channels.SocketChannel;
 
 public class Connection {
     private final SocketChannel channel;
-    private User user;
+    private final UserDTO userDTO;
 
-    public Connection(SocketChannel channel, User user) {
+    public Connection(SocketChannel channel, UserDTO userDTO) {
         this.channel = channel;
-        this.user = user;
+        this.userDTO = userDTO;
     }
 
     public SocketChannel getChannel() {
         return channel;
     }
 
-    public User getUser() {
-        return user;
+    public UserDTO getUserDTO() {
+        return userDTO;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+
 }
