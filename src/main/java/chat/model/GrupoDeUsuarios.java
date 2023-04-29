@@ -7,7 +7,7 @@ import java.util.Collection;
 public class GrupoDeUsuarios implements Serializable {
 	private long id;
 	private String nome;
-	private Collection<Usuario> participantes;
+	private Collection<User> participantes;
 	private Image foto;
 
 	public long getId() {
@@ -18,7 +18,7 @@ public class GrupoDeUsuarios implements Serializable {
 		return nome;
 	}
 
-	public Collection<Usuario> getParticipantes() {
+	public Collection<User> getParticipantes() {
 		return participantes;
 	}
 

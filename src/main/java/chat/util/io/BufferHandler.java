@@ -29,11 +29,15 @@ public class BufferHandler {
     }
 
     public static <T> T getFromBuffer(ByteBuffer buffer, Class<T> clazz) throws IOException, ClassNotFoundException {
+        return clazz.cast(getObjectFromBuffer(buffer));
+    }
+
+    public static Object getObjectFromBuffer(ByteBuffer buffer) throws IOException, ClassNotFoundException {
         var objectInputStream = new ObjectInputStream(
                 new ByteArrayInputStream(buffer.array())
         );
-        T t = clazz.cast(objectInputStream.readObject());
+        Object o = objectInputStream.readObject();
         objectInputStream.close();
-        return t;
+        return o;
     }
 }

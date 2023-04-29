@@ -4,21 +4,22 @@ import java.nio.channels.SocketChannel;
 
 public class Connection {
     private final SocketChannel channel;
-    private Usuario usuario;
+    private User user;
 
-    public Connection(SocketChannel channel) {
+    public Connection(SocketChannel channel, User user) {
         this.channel = channel;
+        this.user = user;
     }
 
     public SocketChannel getChannel() {
         return channel;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

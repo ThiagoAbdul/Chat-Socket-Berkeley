@@ -1,5 +1,6 @@
 package chat.server.controller;
 
+import chat.handler.KeyHandler;
 import chat.model.Connection;
 import lombok.extern.log4j.Log4j2;
 
@@ -26,7 +27,7 @@ public class ChatServer implements Closeable {
     private final Selector selector;
     private Iterator<SelectionKey> keysIterator;
 
-    private final KeyController keyController = new KeyControllerImpl(this);
+    private final KeyHandler keyHandler = new ServerKeyHandler(this);
 
     private ChatServer() throws IOException {
         this.serverChannel = ServerSocketChannel.open();
@@ -47,15 +48,15 @@ public class ChatServer implements Closeable {
         this.serverChannel.register(this.selector, SelectionKey.OP_ACCEPT);
         while (serverChannel.isOpen()){
             keysIterator = selector.selectedKeys().iterator();
-            forEachSelectedKey(keyController); // TODO
+            forEachSelectedKey(keyHandler); // TODO
         }
     }
 
-    private void forEachSelectedKey(KeyController keyController) throws IOException {
+    private void forEachSelectedKey(KeyHandler keyHandler) throws IOException {
         if(hasSelectedChannels()){
             keysIterator = selector.selectedKeys().iterator();
             while (keysIterator.hasNext()){
-                keyController.handleKey(keysIterator.next());
+                keyHandler.handleKey(keysIterator.next());
                 keysIterator.remove();
             }
         }
