@@ -17,9 +17,6 @@ public class ResponseFactory {
 
         switch (motp.CODE) {
             case 1 -> {
-                return null; // TODO
-            }
-            case 2 -> {
                 UserDTO userDTO = (UserDTO) motp.getObject();
                 return new RegisterResponse(server, clientChannel, userDTO);
             }
@@ -28,7 +25,8 @@ public class ResponseFactory {
                 return new SendPrivateMessageResponse(server, messageDTO);
             }
             case 4 -> {
-                return null; // TODO
+                MessageDTO messageDTO = (MessageDTO) motp.getObject();
+                return new SendGlobalMessageResponse(server, messageDTO);
             }
         }
         throw new UnknowCodeException(motp.CODE);

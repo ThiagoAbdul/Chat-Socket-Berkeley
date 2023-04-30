@@ -53,7 +53,7 @@ public class ServerKeyHandler implements KeyHandler {
 
     private void broadcast(Object o) throws IOException {
         ByteBuffer buffer = BufferHandler.objectInBuffer(o);
-        for (Connection connection: server.getConnections()){
+        for (Connection connection: server.getConnections().values()){
             connection.getChannel().write(buffer);
         }
     }

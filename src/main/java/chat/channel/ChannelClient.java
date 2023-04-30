@@ -40,7 +40,6 @@ public class ChannelClient extends ChannelOperation implements Closeable {
 
 
     public void forEachSelectedKey(ClientKeyHandler handler) throws IOException{
-
         if(selector.select() != 0){
             keysIterator = selector.selectedKeys().iterator();
             while(keysIterator.hasNext()){

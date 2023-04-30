@@ -11,16 +11,14 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.util.*;
 
 @Log4j2
 public class ChatServer implements Closeable {
 
     public static final int SERVER_PORT = 8081;
     public static final String SERVER_IP = "127.0.0.1";
-    private static final Collection<Connection> connections = new HashSet<>();
+    private static final Map<Long, Connection> connections = new HashMap<>();
 
     private static ChatServer instance;
     private final ServerSocketChannel serverChannel;
@@ -66,7 +64,7 @@ public class ChatServer implements Closeable {
         return selector.select() != 0;
     }
 
-    Collection<Connection> getConnections(){
+    public Map<Long, Connection> getConnections(){
         return connections;
     }
 

@@ -1,17 +1,18 @@
 package chat.model;
 
-import java.io.Serializable;
+import chat.shared.dto.UserDTO;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 
-public class User implements Serializable {
+public class User {
 
 	private long id;
 	private String name;
 
-	private final Collection<User> contacts = new HashSet<>();
-	private static final long serivalVersionUID = 1L;
+	private final Collection<UserDTO> contacts = new HashSet<>();
+
 
 	public User(long id){
 		this.id = id;

@@ -5,11 +5,16 @@ import java.io.Serializable;
 public class MessageDTO implements Serializable {
 
     private String content;
-    private final String sender;
 
-    public MessageDTO(String content, String sender) {
+    private long senderId;
+    private final String senderName;
+
+    private final long receiverId;
+
+    public MessageDTO(String content, String senderName, long receiverId) {
         this.content = content;
-        this.sender = sender;
+        this.senderName = senderName;
+        this.receiverId = receiverId;
     }
 
     public String getContent() {
@@ -20,7 +25,16 @@ public class MessageDTO implements Serializable {
         this.content = content;
     }
 
-    public String getSender() {
-        return sender;
+    public String getSenderName() {
+        return senderName;
+    }
+
+    public long getReceiverId() {
+        return receiverId;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s: %s", senderName, content);
     }
 }

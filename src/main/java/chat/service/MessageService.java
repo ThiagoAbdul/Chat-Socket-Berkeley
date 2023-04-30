@@ -13,7 +13,11 @@ public class MessageService {
     }
 
     public MessageDTO messageToDTO(Message message){
-        return new MessageDTO(message.getContent(), message.getSender().getName());
+        return new MessageDTO(
+                message.getContent(),
+                message.getSender().getName(),
+                message.getReceiver().getId()
+        );
     }
 
     public void cryptoMessageDTO(MessageDTO messageDTO){

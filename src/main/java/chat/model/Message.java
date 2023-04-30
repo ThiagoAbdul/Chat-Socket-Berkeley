@@ -1,24 +1,25 @@
 package chat.model;
 
 
-import java.io.Serializable;
+import chat.shared.dto.UserDTO;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Message implements Serializable {
+public class Message {
 
 	private Long id;
-	private String content;
+	private final String content;
 	private LocalTime horarioEnvio;
 	private LocalDate dataEnvio;
-	private User sender;
-	private User destinatario;
+	private final User sender;
+	private final UserDTO receiver;
 
-	private static final long serivalVersionUID = 1L;
 
-	public Message(User sender, String content){
+	public Message(User sender, String content, UserDTO receiver){
 		this.sender = sender;
 		this.content = content;
+		this.receiver = receiver;
 	}
 
 	
@@ -37,12 +38,8 @@ public class Message implements Serializable {
 	public User getSender() {
 		return sender;
 	}
-	public User getDestinatario() {
-		return destinatario;
+	public UserDTO getReceiver() {
+		return receiver;
 	}
 
-	@Override
-	public String toString() {
-		return String.format("%s: %s%n", sender.getName(), content);
-	}
 }

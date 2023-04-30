@@ -17,6 +17,7 @@ public class ClientKeyHandler implements KeyHandler {
     }
     @Override
     public void handleKey(SelectionKey key) throws IOException {
+
         if(key.isReadable()){
             try {
                 ChannelReader reader = client.getChannelReader();
