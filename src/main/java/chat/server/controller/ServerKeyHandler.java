@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
+import java.util.Collections;
+import java.util.Optional;
 
 @Log4j2
 public class ServerKeyHandler implements KeyHandler {
@@ -44,8 +46,19 @@ public class ServerKeyHandler implements KeyHandler {
                 }
                 else{
                     log.info("Nothing to read");
+
                     clientChannel.close();
-                    // server.getConnections().remove(new Connection(clientChannel)); // TODO
+                    Optional<Long> connectionId = server.getConnections().keySet()
+                            .stream()
+                            .filter(k -> clientChannel.equals(
+                                                server.getConnections().get(k).getChannel()))
+                            .findAny(); // TODO
+
+                    server.getConnections().keySet().removeIf(k -> clientChannel.equals(
+                            server.getConnections().get(k).getChannel())
+                    );
+                     // TODO
+                    // Precisa pegar a key do user removido e enviar para o cliente saber que está offline
                 }
             }
         }

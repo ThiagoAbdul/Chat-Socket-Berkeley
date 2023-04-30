@@ -2,14 +2,14 @@ package chat.exception;
 
 import chat.model.User;
 
-public class UsuarioNaoRegistradoException extends RuntimeException{
+public class UserNotFoundException extends RuntimeException{
 
 
-    public UsuarioNaoRegistradoException() {
+    public UserNotFoundException() {
         super("Cliente não registrado");
     }
 
-    public UsuarioNaoRegistradoException(User user){
+    public UserNotFoundException(User user){
         super(String.format("Usuario %d - %s Não registrado", user.getId(), user.getName()));
     }
 
