@@ -3,13 +3,13 @@ package chat.client.view;
 import javax.swing.JFrame;
 import java.awt.*;
 
-public class Janela extends JFrame{
+public class ChatWindow extends JFrame{
     static final int LARGURA_JANELA = 960;
     static final int ALTURA_JANELA = 640;
-    final PainelContatos painelContatos = new PainelContatos();
-    final PainelDigitarMensagem painelDigitarMensagem= new PainelDigitarMensagem();
+    final ChatContactsPanel painelContatos = new ChatContactsPanel();
+    final ChatTypeMessagePanel painelDigitarMensagem= new ChatTypeMessagePanel();
 
-    public Janela() throws HeadlessException {
+    public ChatWindow() throws HeadlessException {
 
         setTitle("Chat"); // Nome temporário
         setSize(LARGURA_JANELA, ALTURA_JANELA);

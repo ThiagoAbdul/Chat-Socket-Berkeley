@@ -1,9 +1,9 @@
 package chat.client;
 
-import chat.client.view.Janela;
+import chat.client.view.ChatWindow;
 
-public class App{ // Teste com servidor
+public class App{
     public static void main(String[] args) {
-        new Janela();
+        new ChatWindow();
     }
 }
