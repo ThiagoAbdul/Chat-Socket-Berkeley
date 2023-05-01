@@ -5,11 +5,13 @@ import chat.model.Connection;
 import chat.service.UserService;
 import chat.shared.dto.UserDTO;
 import chat.shared.protocol.MyObjectTransferProtocolFactory;
+import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
 import java.nio.channels.SocketChannel;
 import java.util.stream.Collectors;
 
+@Log4j2
 public class RegisterResponse implements Response{
 
     private final ChatServer server;
@@ -27,7 +29,7 @@ public class RegisterResponse implements Response{
     }
 
     @Override
-    public void doResponse() {
+    public void doResponse() throws IOException{
         Connection newConnection = new Connection(clientChannel, userDTO);
         long uniqueId = userService.getUniqueId();
         userDTO.setId(uniqueId);
@@ -37,8 +39,9 @@ public class RegisterResponse implements Response{
             this.server.getConnections().put(uniqueId, newConnection);
             Thread.sleep(5); // Necessário!!!
             sendIdToUser(uniqueId);
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            log.info(e.getMessage());
+            sendIdToUser(uniqueId);
         }
 
     }

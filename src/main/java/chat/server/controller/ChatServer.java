@@ -68,10 +68,6 @@ public class ChatServer implements Closeable {
         return connections;
     }
 
-    public ServerSocketChannel getServerChannel(){
-        return serverChannel;
-    }
-
     public Selector getSelector(){
         return selector;
     }

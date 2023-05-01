@@ -1,6 +1,8 @@
 package chat.server.controller;
 
+import java.io.IOException;
+
 public interface Response{
 
-    void doResponse();
+    void doResponse() throws IOException;
 }

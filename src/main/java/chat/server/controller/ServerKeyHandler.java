@@ -3,16 +3,12 @@ package chat.server.controller;
 import chat.channel.ChannelReader;
 import chat.exception.UnknowCodeException;
 import chat.handler.KeyHandler;
-import chat.model.Connection;
 import chat.shared.protocol.MyObjectTransferProtocol;
-import chat.util.io.BufferHandler;
 import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
-import java.util.Collections;
 import java.util.Optional;
 
 @Log4j2
@@ -38,36 +34,20 @@ public class ServerKeyHandler implements KeyHandler {
                 if(reader.hasContentToRead()){
                     try {
                         MyObjectTransferProtocol<?> motp = reader.read(MyObjectTransferProtocol.class);
-                        Response response = ResponseFactory.getResponse(server, clientChannel, motp);
-                        response.doResponse();
+                        Optional<Response> response = ResponseFactory.getOptionalResponse(server, clientChannel, motp);
+                        if(response.isPresent()){
+                            response.get().doResponse();
+                        }
                     } catch (ClassNotFoundException | UnknowCodeException e) {
                         throw new RuntimeException(e);
                     }
                 }
                 else{
                     log.info("Nothing to read");
-
-                    clientChannel.close();
-                    Optional<Long> connectionId = server.getConnections().keySet()
-                            .stream()
-                            .filter(k -> clientChannel.equals(
-                                                server.getConnections().get(k).getChannel()))
-                            .findAny(); // TODO
-
-                    server.getConnections().keySet().removeIf(k -> clientChannel.equals(
-                            server.getConnections().get(k).getChannel())
-                    );
-                     // TODO
-                    // Precisa pegar a key do user removido e enviar para o cliente saber que está offline
+                    Response response = ResponseFactory.getEndConnectionResponse(server, clientChannel);
+                    response.doResponse();
                 }
             }
-        }
-    }
-
-    private void broadcast(Object o) throws IOException {
-        ByteBuffer buffer = BufferHandler.objectInBuffer(o);
-        for (Connection connection: server.getConnections().values()){
-            connection.getChannel().write(buffer);
         }
     }
 
