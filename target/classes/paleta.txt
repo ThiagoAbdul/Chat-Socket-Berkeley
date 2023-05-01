@@ -1,6 +1,0 @@
-Verde - #6DB33F
-Preto - #1E1E1E
-Cinza Escuro - #252526
-Cinza - #333333
-Cinza Claro - #9B9B9B
-Branco - #FFFFFF

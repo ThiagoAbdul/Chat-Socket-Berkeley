@@ -7,7 +7,7 @@ public enum ChatColor {
     PRETO(30, 30, 30),
     CINZA_ESCURO(37, 37, 38),
     CINZA(51, 51, 51),
-    CINZA_CLARO(165, 165, 165),
+    CINZA_CLARO(200, 200, 200),
     BRANCO(255, 255, 255);
 
     private Color cor;
