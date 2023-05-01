@@ -3,15 +3,18 @@ package chat.client.view;
 import javax.swing.*;
 
 public class ChatTypeMessagePanel extends JPanel implements ChatComponent {
-    static final int COMPONENT_HEIGHT = 140;
+    static final int COMPONENT_HEIGHT = 100;
+
+    static final int PADDING = 20;
     private final ChatscrollPane scroll;
     static final int COMPONENT_WIDTH = ChatWindow.LARGURA_JANELA - ChatContactsPanel.LARGURA_PAINEL;
     public ChatTypeMessagePanel() {
         setLayout(null);
         setForm();
-        setBackground(Cores.CINZA_ESCURO.getCor());
+        setBackground(ChatColor.CINZA_ESCURO.getCor());
         scroll = new ChatscrollPane(new ChatTextArea());
         add(scroll);
+        add(new SendMessageButton());
     }
 
     @Override

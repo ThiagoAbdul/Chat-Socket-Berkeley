@@ -4,17 +4,16 @@ import javax.swing.*;
 
 public class ChatscrollPane extends JScrollPane implements ChatComponent{
 
-    private static final int PADDING = 20;
 
     public ChatscrollPane(ChatTextArea textArea) {
         super(textArea);
         setForm();
-        setBackground(Cores.CINZA_CLARO.getCor());
+        setBackground(ChatColor.CINZA_CLARO.getCor());
     }
 
     @Override
     public void setForm() {
-        setBounds(0, PADDING, ChatTypeMessagePanel.COMPONENT_WIDTH + 10,
-                ChatTypeMessagePanel.COMPONENT_HEIGHT);
+        setBounds(0, ChatTypeMessagePanel.PADDING, ChatTypeMessagePanel.COMPONENT_WIDTH + 5 - ChatButton.BUTTON_WIDTH,
+                ChatTypeMessagePanel.COMPONENT_HEIGHT - 55);
     }
 }

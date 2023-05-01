@@ -7,7 +7,7 @@ public class ChatContactsPanel extends JPanel implements ChatComponent {
     static final int LARGURA_PAINEL = 280;
     public ChatContactsPanel() {
         setForm();
-        setBackground(Cores.CINZA.getCor());
+        setBackground(ChatColor.CINZA.getCor());
     }
 
     @Override

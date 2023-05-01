@@ -17,7 +17,7 @@ public class ChatWindow extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setLayout(null);
-        getContentPane().setBackground(Cores.PRETO.getCor());
+        getContentPane().setBackground(ChatColor.PRETO.getCor());
         getContentPane().add(painelContatos);
         getContentPane().add(painelDigitarMensagem);
         setVisible(true);
