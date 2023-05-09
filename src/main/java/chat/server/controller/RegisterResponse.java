@@ -12,7 +12,7 @@ import java.nio.channels.SocketChannel;
 import java.util.stream.Collectors;
 
 @Log4j2
-public class RegisterResponse implements Response{
+public class RegisterResponse implements ServerResponse {
 
     private final ChatServer server;
     private final SocketChannel clientChannel;

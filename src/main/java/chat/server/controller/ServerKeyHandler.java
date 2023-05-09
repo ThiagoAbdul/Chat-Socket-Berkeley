@@ -34,7 +34,7 @@ public class ServerKeyHandler implements KeyHandler {
                 if(reader.hasContentToRead()){
                     try {
                         MyObjectTransferProtocol<?> motp = reader.read(MyObjectTransferProtocol.class);
-                        Optional<Response> response = ResponseFactory.getOptionalResponse(server, clientChannel, motp);
+                        Optional<ServerResponse> response = ServerResponseFactory.getOptionalResponse(server, clientChannel, motp);
                         if(response.isPresent()){
                             response.get().doResponse();
                         }
@@ -44,8 +44,8 @@ public class ServerKeyHandler implements KeyHandler {
                 }
                 else{
                     log.info("Nothing to read");
-                    Response response = ResponseFactory.getEndConnectionResponse(server, clientChannel);
-                    response.doResponse();
+                    ServerResponse serverResponse = ServerResponseFactory.getEndConnectionResponse(server, clientChannel);
+                    serverResponse.doResponse();
                 }
             }
         }

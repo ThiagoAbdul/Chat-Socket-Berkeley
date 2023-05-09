@@ -8,7 +8,7 @@ import java.nio.channels.SocketChannel;
 import java.util.Map;
 import java.util.Optional;
 
-public class EndConnectionResponse implements Response{
+public class EndConnectionResponse implements ServerResponse {
 
     private final ChatServer server;
     private final SocketChannel clientChannel;

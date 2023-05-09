@@ -9,9 +9,9 @@ import chat.shared.protocol.MyObjectTransferprotocolCode;
 import java.nio.channels.SocketChannel;
 import java.util.Optional;
 
-public class ResponseFactory {
+public class ServerResponseFactory {
 
-    public static Optional<Response> getOptionalResponse(
+    public static Optional<ServerResponse> getOptionalResponse(
             ChatServer server,
             SocketChannel clientChannel,
             MyObjectTransferProtocol<?> motp)
@@ -37,7 +37,7 @@ public class ResponseFactory {
         return Optional.empty();
     }
 
-    public static Response getEndConnectionResponse(ChatServer server, SocketChannel clientChannel){
+    public static ServerResponse getEndConnectionResponse(ChatServer server, SocketChannel clientChannel){
         return new EndConnectionResponse(server, clientChannel);
     }
 

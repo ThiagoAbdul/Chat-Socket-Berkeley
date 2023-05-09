@@ -7,7 +7,7 @@ import chat.shared.protocol.MyObjectTransferProtocolFactory;
 
 import java.io.IOException;
 
-public class SendPrivateMessageResponse implements Response{
+public class SendPrivateMessageResponse implements ServerResponse {
 
     private final ChatServer server;
     private final MessageDTO messageDTO;

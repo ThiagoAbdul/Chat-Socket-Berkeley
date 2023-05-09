@@ -2,7 +2,7 @@ package chat.server.controller;
 
 import java.io.IOException;
 
-public interface Response{
+public interface ServerResponse {
 
     void doResponse() throws IOException;
 }
