@@ -1,9 +1,9 @@
 package chat.client;
 
-import chat.client.view.ChatWindow;
+import chat.client.view.TelaInicial;
 
 public class App{
     public static void main(String[] args) {
-        new ChatWindow();
+        new TelaInicial().iniciar();
     }
 }
